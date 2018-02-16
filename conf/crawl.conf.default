@@ -40,7 +40,7 @@ protocol_version = 70015
 # crawler. This is so that users will not confuse your crawler with another
 # instance that is already running and generating data for the project.
 # -----------------------------------------------------------------------------
-user_agent = /bitnodes.earn.com:0.1/
+user_agent = /cashnodes.io:0.1/
 
 # Services to use for outgoing network address message
 services = 0
@@ -67,6 +67,8 @@ ipv6 = True
 ipv6_prefix = 64
 nodes_per_ipv6_prefix = 1
 
+# TODO evaluate if these net need to be blacklisted
+# (module the private/multicast net class)
 # List of excluded IPv4 networks
 exclude_ipv4_networks =
     0.0.0.0/8

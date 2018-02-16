@@ -14,13 +14,12 @@ db = 0
 
 # List of DNS seeders to get a subset of reachable nodes
 seeders =
-    dnsseed.bitcoin.dashjr.org
-    dnsseed.bluematt.me
-    seed.bitcoin.jonasschnelli.ch
-    seed.bitcoin.sipa.be
-    seed.bitcoinstats.com
-    seed.btc.petertodd.org
-    seed.bitnodes.io
+    seed.bitcoinabc.org
+    seed-abc.bitcoinforks.org
+    btccash-seeder.bitcoinunlimited.info
+    seed.bitprim.org
+    seed.deadalnix.me
+    seeder.criptolayer.net
 
 # Number of concurrent workers (greenlets)
 workers = 700

@@ -108,26 +108,17 @@ tor_proxy = 127.0.0.1:9050
 
 # List of initial .onion nodes
 onion_nodes =
-    4crhf372poejlc44.onion
-    5ghqw4wj6hpgfvdg.onion
-    5k4vwyy5stro33fb.onion
-    bitcoinostk4e4re.onion
-    bk5ejfe56xakvtkk.onion
-    btcnet3utgzyz2bf.onion
-    czsbwh4pq4mh3izl.onion
-    e3tn727fywnioxrc.onion
-    evolynhit7shzeet.onion
-    i2r5tbaizb75h26f.onion
-    jxrvw5iqizppbgml.onion
-    kjy2eqzk4zwi5zd3.onion
-    pqosrh6wfaucet32.onion
-    pt2awtcs2ulm75ig.onion
-    szsm43ou7otwwyfv.onion
-    td7tgof3imei3fm6.onion
-    tfu4kqfhsw5slqp2.onion
-    vso3r6cmjoomhhgg.onion
-    xdnigz4qn5dbbw2t.onion
-    zy3kdqowmrb7xm7h.onion
+    wioaxcgen3qvoqbf.onion
+    hpquscklwzoiw7qv.onion
+    2zfhqfr4buzvrl5y.onion
+    wgjotdhmpcj2kyq2.onion
+    l4xfmcziytzeehcz.onion
+    36xxwca2o6gz2h2b.onion
+    7ejgnxi5z4w6tcgc.onion
+    rlxhnlonhjiyzhjb.onion
+    62au2pzqah7cnrrw.onion
+    5difox54jm5hplrw.onion
+    jwplkr5q3fivotmz.onion
 
 # Include reachable nodes from https://bitnodes.earn.com/#join-the-network
 include_checked = False

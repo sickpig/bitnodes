@@ -1,10 +1,10 @@
 [crawl]
 
 # Logfile
-logfile = log/crawl.f9beb4d9.log
+logfile = log/crawl.e3e1f3e8.log
 
 # Network magic number
-magic_number = f9beb4d9
+magic_number = e3e1f3e8
 
 # Default/fallback port number
 port = 8333
@@ -132,4 +132,4 @@ onion_nodes =
 include_checked = False
 
 # Relative path to directory containing timestamp-prefixed JSON crawl files
-crawl_dir = data/crawl/f9beb4d9
+crawl_dir = data/crawl/e3e1f3e8

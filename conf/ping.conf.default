@@ -1,10 +1,10 @@
 [ping]
 
 # Logfile
-logfile = log/ping.f9beb4d9.log
+logfile = log/ping.e3e1f3e8.log
 
 # Network magic number
-magic_number = f9beb4d9
+magic_number = e3e1f3e8
 
 # Redis database number
 db = 0
@@ -56,4 +56,4 @@ onion = True
 tor_proxy = 127.0.0.1:9050
 
 # Relative path to directory containing timestamp-prefixed JSON crawl files
-crawl_dir = data/crawl/f9beb4d9
+crawl_dir = data/crawl/e3e1f3e8

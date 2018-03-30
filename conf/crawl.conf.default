@@ -69,6 +69,10 @@ nodes_per_ipv6_prefix = 1
 
 # TODO evaluate if these net need to be blacklisted
 # (module the private/multicast net class)
+
+# List of excluded ASNs
+exclude_asns =
+
 # List of excluded IPv4 networks
 exclude_ipv4_networks =
     0.0.0.0/8

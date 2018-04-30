@@ -49,7 +49,7 @@
 REPO_URL="https://github.com/BitcoinUnlimited/BitcoinUnlimited.git"
 
 # See https://github.com/BitcoinUnlimited/BitcoinUnlimited/tags for latest version.
-VERSION=1.2.0.1
+VERSION=1.3.0.0
 
 TARGET_DIR=$HOME/bitcoin-unlimited
 PORT=8333
@@ -480,19 +480,17 @@ install_bucash() {
     fi
 
     echo $TARGET_DIR
-    # convert to a three digits format. It will not needed anymore once we get the
-    # folder name reporting the correct 4 digits version format
-    VER2=${VERSION%.*}
+
     if [ -f "$TARGET_DIR/BitcoinUnlimited/src/bitcoind" ]; then
         # Install compiled binaries.
         cp "$TARGET_DIR/BitcoinUnlimited/src/bitcoind" "$TARGET_DIR/bin/" &&
             cp "$TARGET_DIR/BitcoinUnlimited/src/bitcoin-cli" "$TARGET_DIR/bin/" &&
             print_success "Bitcoin Unlimited v$VERSION (compiled) installed successfully!"
-    elif [ -f "$TARGET_DIR/BUcash-$VER2/bin/bitcoind" ]; then
+    elif [ -f "$TARGET_DIR/BUcash-$VERSION/bin/bitcoind" ]; then
         # Install downloaded binaries.
-        cp "$TARGET_DIR/BUcash-$VER2/bin/bitcoind" "$TARGET_DIR/bin/" &&
-            cp "$TARGET_DIR/BUcash-$VER2/bin/bitcoin-cli" "$TARGET_DIR/bin/" &&
-                rm -rf "$TARGET_DIR/BUcash-$VER2"
+        cp "$TARGET_DIR/BUcash-$VERSION/bin/bitcoind" "$TARGET_DIR/bin/" &&
+            cp "$TARGET_DIR/BUcash-$VERSION/bin/bitcoin-cli" "$TARGET_DIR/bin/" &&
+                rm -rf "$TARGET_DIR/BUcash-$VERSION"
             print_success "Bitcoin Unlimited v$VERSION (binaries) installed successfully!"
     else
         print_error "Cannot find files to install."

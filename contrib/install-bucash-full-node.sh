@@ -273,7 +273,7 @@ install_mac_build_dependencies() {
     fi
 
     brew install \
-        --c++11 \
+        --c++14 \
         automake \
         boost \
         libevent \
@@ -423,7 +423,7 @@ download_bin() {
 
     cd $TARGET_DIR
 
-    # $1 should be something like https://github.com/BitcoinUnlimited/BitcoinUnlimited/archive/bucash1.2.0.1.tar.gz
+    # $1 should be something like https://github.com/BitcoinUnlimited/BitcoinUnlimited/archive/bucash1.6.0.0.tar.gz
     rm -f BUcash-$VERSION.tar.gz checksum.asc signing_key.asc
 
     print_info "\nDownloading Bitcoin Unlimited binaries.."

@@ -2,7 +2,7 @@
 
 ###############################################################################
 #
-#                             install-full-node.sh
+#                             install-bucash-full-node.sh
 #
 # This is the cashnodes.io install script for Bitcoin Cash full node based on Bitcoin Unlimited.
 #
@@ -19,7 +19,7 @@
 # Usage:
 #   Open your terminal and type:
 #
-#     curl https://cashnodes.io/install-full-node.sh | sh
+#     curl https://cashnodes.io/install-bucash-full-node.sh | sh
 #
 # Bitcoin Unlimited will be installed using binaries provided by bitcoinunlimited.info.
 #
@@ -152,7 +152,7 @@ To view Bitcoin Unlimited log file:
 
 To uninstall Bitcoin Unlimited:
 
-    ./install-full-node.sh -u
+    ./install-bucash-full-node.sh -u
 
 EOF
 }
@@ -667,7 +667,7 @@ After the installation, it may take several hours for your node to download a
 full copy of the blockchain.
 
 If you wish to uninstall Bitcoin Unlimited later, you can download this script and
-run "sh install-full-node.sh -u".
+run "sh install-bucash-full-node.sh -u".
 
 EOF
 )

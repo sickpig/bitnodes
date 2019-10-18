@@ -112,7 +112,7 @@ class Seeder(object):
             template = open(CONF['template'], "r") \
                 .read() \
                 .replace("1501826735", serial) \
-                .replace("seed.bitnodes.io.", zone.replace("zone", ""))
+                .replace("seed.cashnodes.io.", zone.replace("zone", ""))
             content = "".join([
                 template,
                 wildcard,

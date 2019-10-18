@@ -49,7 +49,7 @@
 REPO_URL="https://github.com/BitcoinUnlimited/BitcoinUnlimited.git"
 
 # See https://github.com/BitcoinUnlimited/BitcoinUnlimited/tags for latest version.
-VERSION=1.6.0.0
+VERSION=1.7.0.0
 
 TARGET_DIR=$HOME/bitcoin-unlimited
 PORT=8333

@@ -2,7 +2,7 @@
 
 ###############################################################################
 #
-#                             install-bucash-full-node.sh
+#                             install-bu-full-node.sh
 #
 # This is the cashnodes.io install script for Bitcoin Cash full node based on Bitcoin Unlimited.
 #
@@ -19,7 +19,7 @@
 # Usage:
 #   Open your terminal and type:
 #
-#     curl https://cashnodes.io/install-bucash-full-node.sh | sh
+#     curl https://cashnodes.io/install-bu-full-node.sh | sh
 #
 # Bitcoin Unlimited will be installed using binaries provided by bitcoinunlimited.info.
 #
@@ -50,6 +50,7 @@ REPO_URL="https://github.com/BitcoinUnlimited/BitcoinUnlimited.git"
 
 # See https://github.com/BitcoinUnlimited/BitcoinUnlimited/tags for latest version.
 VERSION=1.7.0.0
+PKG_NAME=BUcash
 
 TARGET_DIR=$HOME/bitcoin-unlimited
 PORT=8333
@@ -389,24 +390,24 @@ get_bin_url() {
             if program_exists "apk"; then
                 echo ""
             elif [ "$ARCH" = "armv7l" ]; then
-                url="$url/BUcash-$VERSION-arm32.tar.gz"
+                url="$url/$PKG_NAME-$VERSION-arm32.tar.gz"
                 echo "$url"
             elif [ "$ARCH" = "aarch64" ]; then
-                url="$url/BUcash-$VERSION-arm64.tar.gz"
+                url="$url/$PKG_NAME-$VERSION-arm64.tar.gz"
                 echo "$url"
             elif [ "$ARCH" = "x86_64" ]; then
-                url="$url/BUcash-$VERSION-linux64.tar.gz"
+                url="$url/$PKG_NAME-$VERSION-linux64.tar.gz"
                 echo "$url"
             elif [ "$ARCH" = "i686-pc" ]; then
-                url="$url/BUcash-$VERSION-linux32.tar.gz"
+                url="$url/$PKG_NAME-$VERSION-linux32.tar.gz"
                 echo "$url"
             else
-                url="$url/BUcash-$VERSION-$ARCH-linux-gnu.tar.gz"
+                url="$url/$PKG_NAME-$VERSION-$ARCH-linux-gnu.tar.gz"
                 echo "$url"
             fi
             ;;
         Darwin)
-            url="$url/BUcash-$VERSION-osx64.tar.gz"
+            url="$url/$PKG_NAME-$VERSION-osx64.tar.gz"
             echo "$url"
             ;;
         FreeBSD)
@@ -424,36 +425,36 @@ download_bin() {
     cd $TARGET_DIR
 
     # $1 should be something like https://github.com/BitcoinUnlimited/BitcoinUnlimited/archive/bucash1.6.0.0.tar.gz
-    rm -f BUcash-$VERSION.tar.gz checksum.asc signing_key.asc
+    rm -f $PKG_NAME-$VERSION.tar.gz checksum.asc signing_key.asc
 
     print_info "\nDownloading Bitcoin Unlimited binaries.."
     if program_exists "wget"; then
         echo $1
         echo $checksum_url
-        wget "$1" -O BUcash-$VERSION.tar.gz &&
+        wget "$1" -O $PKG_NAME-$VERSION.tar.gz &&
             wget "$checksum_url" -O checksum.asc &&
-            tar xzf BUcash-$VERSION.tar.gz
+            tar xzf $PKG_NAME-$VERSION.tar.gz
     elif program_exists "curl"; then
-        curl -s "$1" -o BUcash-$VERSION.tar.gz &&
+        curl -s "$1" -o $PKG_NAME-$VERSION.tar.gz &&
             curl -s "$checksum_url" -o checksum.asc &&
-            tar xzf BUcash-$VERSION.tar.gz
+            tar xzf $PKG_NAME-$VERSION.tar.gz
     else
         print_error "\nwget or curl program is required to continue. Please install wget or curl as root and rerun this script as normal user."
         exit 1
     fi
 
     if program_exists "shasum"; then
-        checksum=$(shasum -a 256 BUcash-$VERSION.tar.gz | awk '{ print $1 }')
+        checksum=$(shasum -a 256 $PKG_NAME-$VERSION.tar.gz | awk '{ print $1 }')
         if grep -q "$checksum" checksum.asc; then
-            print_success "Checksum passed: BUcash-$VERSION.tar.gz ($checksum)"
+            print_success "Checksum passed: $PKG_NAME-$VERSION.tar.gz ($checksum)"
         else
-            print_error "Checksum failed: BUcash-$VERSION.tar.gz ($checksum). Please rerun this script to download and validate the binaries again."
+            print_error "Checksum failed: $PKG_NAME-$VERSION.tar.gz ($checksum). Please rerun this script to download and validate the binaries again."
             exit 1
         fi
     fi
 
-    rm -f BUcash-$VERSION.tar.gz checksum.asc
-    rename BUcash-?.?.? bucash
+    rm -f $PKG_NAME-$VERSION.tar.gz checksum.asc
+    rename $PKG_NAME-?.?.? bucash
 }
 
 install_bucash() {
@@ -486,11 +487,11 @@ install_bucash() {
         cp "$TARGET_DIR/BitcoinUnlimited/src/bitcoind" "$TARGET_DIR/bin/" &&
             cp "$TARGET_DIR/BitcoinUnlimited/src/bitcoin-cli" "$TARGET_DIR/bin/" &&
             print_success "Bitcoin Unlimited v$VERSION (compiled) installed successfully!"
-    elif [ -f "$TARGET_DIR/BUcash-$VERSION/bin/bitcoind" ]; then
+    elif [ -f "$TARGET_DIR/$PKG_NAME-$VERSION/bin/bitcoind" ]; then
         # Install downloaded binaries.
-        cp "$TARGET_DIR/BUcash-$VERSION/bin/bitcoind" "$TARGET_DIR/bin/" &&
-            cp "$TARGET_DIR/BUcash-$VERSION/bin/bitcoin-cli" "$TARGET_DIR/bin/" &&
-                rm -rf "$TARGET_DIR/BUcash-$VERSION"
+        cp "$TARGET_DIR/$PKG_NAME-$VERSION/bin/bitcoind" "$TARGET_DIR/bin/" &&
+            cp "$TARGET_DIR/$PKG_NAME-$VERSION/bin/bitcoin-cli" "$TARGET_DIR/bin/" &&
+                rm -rf "$TARGET_DIR/$PKG_NAME-$VERSION"
             print_success "Bitcoin Unlimited v$VERSION (binaries) installed successfully!"
     else
         print_error "Cannot find files to install."

@@ -8,12 +8,12 @@ Currently set of [API](https://github.com/BitcoinUnlimited/cashnodes-api) and is
     GET /snapshots
     GET /snapshots/:timestamp
 
-To deploy an instance of the crawler please have a look at the step necessary to set up a machine to run the backend code: [Provisioning Bitcoin Network Crawler](https://github.com/ayeowch/bitnodes/wiki/Provisioning-Bitcoin-Network-Crawler). The [Redis Data](https://github.com/ayeowch/bitnodes/wiki/Redis-Data) contains the list of keys and their associated values that are written by the scripts in this project. 
+To deploy an instance of the crawler please have a look at the step necessary to set up a machine to run the backend code: [Provisioning Bitcoin Network Crawler](https://github.com/ayeowch/bitnodes/wiki/Provisioning-Bitcoin-Network-Crawler). The [Redis Data](https://github.com/ayeowch/bitnodes/wiki/Redis-Data) contains the list of keys and their associated values that are written by the scripts in this project.
 
 
-Both aforementioned documentations are tailored for bitnodes.earn.com code base, we are going to provide a Cash version of those wiki pages as soon as things settled. 
+Both aforementioned documentations are tailored for bitnodes.earn.com code base, we are going to provide a Cash version of those wiki pages as soon as things settled.
 
-If you wish to access the data, e.g. list of network snapshots, collected using this project, see the initial set of [APIs](https://github.com/BitcoinUnlimited/cashnodes-api)i we are currently developing.
+If you wish to access the data, e.g. list of network snapshots, collected using this project, see the initial set of [APIs](https://github.com/BitcoinUnlimited/cashnodes-api) we are currently developing.
 
 ## How to start the crawler
 

@@ -157,7 +157,7 @@ MIN_PROTOCOL_VERSION = 70001
 PROTOCOL_VERSION = 70015
 FROM_SERVICES = 0
 TO_SERVICES = 1  # NODE_NETWORK
-USER_AGENT = "/cashnodes.io:0.2/"
+USER_AGENT = "/cashnodes.io:0.0.2/"
 HEIGHT = 478000
 RELAY = 0  # set to 1 to receive all txs
 

@@ -17,6 +17,7 @@ If you wish to access the data, e.g. list of network snapshots, collected using 
 
 ## How to start the crawler
 
+```bash
 cd; wget --no-check-certificate https://github.com/BitcoinUnlimited/cashnodes/archive/master.zip
 unzip master.zip
 virtualenv ~/.virtualenvs/cashnodes
@@ -29,3 +30,4 @@ cd data/pcap/e3e1f3e8
 sudo rm *.pcap
 sudo tcpdump -i [INTERFACE] -w %s.[INTERFACE.pcap -v -n -G 2 -B 65536 -Z [USERNAME] 'tcp and not src host [IP_ADDRESS] and not src host [IPV6_ADDRESS]' > [INTERFACE] 2>&1 &
 sudo tcpdump -i lo -w %s.lo.pcap -v -n -G 2 -B 65536 -Z [USERNAME] 'tcp and port 9050' > lo 2>&1 &
+```

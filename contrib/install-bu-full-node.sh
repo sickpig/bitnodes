@@ -4,7 +4,7 @@
 #
 #                             install-bu-full-node.sh
 #
-# This is the cashnodes.io install script for Bitcoin Cash full node based on Bitcoin Unlimited.
+# This is the cashnodes.io install script for Bitcoin Cash full node based on BCH Unlimited.
 #
 # This script attempts to make your node automatically reachable by other nodes
 # in the network. This is done by using uPnP to open port 8333 on your router
@@ -21,10 +21,10 @@
 #
 #     curl https://cashnodes.io/install-bu-full-node.sh | sh
 #
-# Bitcoin Unlimited will be installed using binaries provided by bitcoinunlimited.info.
+# BCH Unlimited will be installed using binaries provided by bitcoinunlimited.info.
 #
 # If the binaries for your system are not available, the installer will attempt
-# to build and install Bitcoin Unlimited from source.
+# to build and install BCH Unlimited from source.
 #
 # All files will be installed into $HOME/bitcoin-unlimited directory. Layout of this
 # directory after the installation is shown below:
@@ -49,8 +49,8 @@
 REPO_URL="https://github.com/BitcoinUnlimited/BitcoinUnlimited.git"
 
 # See https://github.com/BitcoinUnlimited/BitcoinUnlimited/tags for latest version.
-VERSION=1.7.0.0
-PKG_NAME=BUcash
+VERSION=1.8.0.0
+PKG_NAME=bch-unlimited
 
 TARGET_DIR=$HOME/bitcoin-unlimited
 PORT=8333
@@ -75,7 +75,7 @@ SUDO=""
 usage() {
     cat <<EOF
 
-This is the cashnodes.io install script for Bitcoin Cash full node based on Bitcoin Unlimited.
+This is the cashnodes.io install script for Bitcoin Cash full node based on BCH Unlimited.
 
 Usage: $0 [-h] [-v <version>] [-t <target_directory>] [-p <port>] [-b] [-u]
 
@@ -83,7 +83,7 @@ Usage: $0 [-h] [-v <version>] [-t <target_directory>] [-p <port>] [-b] [-u]
     Print usage.
 
 -v <version>
-    Version of Bitcoin Unlimited to install.
+    Version of BCH Unlimited to install.
     Default: $VERSION
 
 -t <target_directory>
@@ -91,15 +91,15 @@ Usage: $0 [-h] [-v <version>] [-t <target_directory>] [-p <port>] [-b] [-u]
     Default: $HOME/bitcoin-unlimited
 
 -p <port>
-    Bitcoin Unlimited listening port.
+    BCH Unlimited listening port.
     Default: $PORT
 
 -b
-    Build and install Bitcoin Unlimited from source.
+    Build and install BCH Unlimited from source.
     Default: $BUILD
 
 -u
-    Uninstall Bitcoin Unlimited.
+    Uninstall BCH Unlimited.
 
 EOF
 }
@@ -135,11 +135,11 @@ print_readme() {
 
 # README
 
-To stop Bitcoin Unlimited:
+To stop BCH Unlimited:
 
     cd $TARGET_DIR/bin && ./stop.sh
 
-To start Bitcoin Unlimited again:
+To start BCH Unlimited again:
 
     cd $TARGET_DIR/bin && ./start.sh
 
@@ -147,13 +147,13 @@ To use bitcoin-cli program:
 
     cd $TARGET_DIR/bin && ./bitcoin-cli -conf=$TARGET_DIR/.bitcoin/bitcoin.conf getinfo
 
-To view Bitcoin Unlimited log file:
+To view BCH Unlimited log file:
 
     tail -f $TARGET_DIR/.bitcoin/debug.log
 
-To uninstall Bitcoin Unlimited:
+To uninstall BCH Unlimited:
 
-    ./install-bucash-full-node.sh -u
+    ./install-bch-unlimited-full-node.sh -u
 
 EOF
 }
@@ -336,7 +336,7 @@ build_bucash() {
     cd $TARGET_DIR
 
     if [ ! -d "$TARGET_DIR/bitcoin" ]; then
-        print_info "\nDownloading Bitcoin Unlimited source files.."
+        print_info "\nDownloading BCH Unlimited source files.."
         git clone --quiet $REPO_URL
     fi
 
@@ -349,7 +349,7 @@ build_bucash() {
         fi
     fi
 
-    print_info "\nBuilding Bitcoin Unlimited v$VERSION"
+    print_info "\nBuilding BCH Unlimited v$VERSION"
     print_info "Build output: $TARGET_DIR/bitcoin/build.out"
     print_info "This can take up to an hour or more.."
     rm -f build.out
@@ -427,7 +427,7 @@ download_bin() {
     # $1 should be something like https://github.com/BitcoinUnlimited/BitcoinUnlimited/archive/bucash1.6.0.0.tar.gz
     rm -f $PKG_NAME-$VERSION.tar.gz checksum.asc signing_key.asc
 
-    print_info "\nDownloading Bitcoin Unlimited binaries.."
+    print_info "\nDownloading BCH Unlimited binaries.."
     if program_exists "wget"; then
         echo $1
         echo $checksum_url
@@ -460,7 +460,7 @@ download_bin() {
 install_bucash() {
     cd $TARGET_DIR
 
-    print_info "\nInstalling Bitcoin Unlimited v$VERSION"
+    print_info "\nInstalling BCH Unlimited v$VERSION"
 
     if [ ! -d "$TARGET_DIR/bin" ]; then
         mkdir -p $TARGET_DIR/bin
@@ -486,13 +486,13 @@ install_bucash() {
         # Install compiled binaries.
         cp "$TARGET_DIR/BitcoinUnlimited/src/bitcoind" "$TARGET_DIR/bin/" &&
             cp "$TARGET_DIR/BitcoinUnlimited/src/bitcoin-cli" "$TARGET_DIR/bin/" &&
-            print_success "Bitcoin Unlimited v$VERSION (compiled) installed successfully!"
+            print_success "BCH Unlimited v$VERSION (compiled) installed successfully!"
     elif [ -f "$TARGET_DIR/$PKG_NAME-$VERSION/bin/bitcoind" ]; then
         # Install downloaded binaries.
         cp "$TARGET_DIR/$PKG_NAME-$VERSION/bin/bitcoind" "$TARGET_DIR/bin/" &&
             cp "$TARGET_DIR/$PKG_NAME-$VERSION/bin/bitcoin-cli" "$TARGET_DIR/bin/" &&
                 rm -rf "$TARGET_DIR/$PKG_NAME-$VERSION"
-            print_success "Bitcoin Unlimited v$VERSION (binaries) installed successfully!"
+            print_success "BCH Unlimited v$VERSION (binaries) installed successfully!"
     else
         print_error "Cannot find files to install."
         exit 1
@@ -537,7 +537,7 @@ EOF
 
 start_bucash() {
     if [ ! -f $TARGET_DIR/.bitcoin/bitcoind.pid ]; then
-        print_info "\nStarting Bitcoin Unlimited.."
+        print_info "\nStarting BCH Unlimited.."
         cd $TARGET_DIR/bin && ./start.sh
 
         timer=0
@@ -547,9 +547,9 @@ start_bucash() {
         done
 
         if [ -f $TARGET_DIR/.bitcoin/bitcoind.pid ]; then
-            print_success "Bitcoin Unlimited is running!"
+            print_success "BCH Unlimited is running!"
         else
-            print_error "Failed to start Bitcoin Unlimited."
+            print_error "Failed to start BCH Unlimited."
             exit 1
         fi
     fi
@@ -557,7 +557,7 @@ start_bucash() {
 
 stop_bucash() {
     if [ -f $TARGET_DIR/.bitcoin/bitcoind.pid ]; then
-        print_info "\nStopping Bitcoin Unlimited.."
+        print_info "\nStopping BCH Unlimited.."
         cd $TARGET_DIR/bin && ./stop.sh
 
         timer=0
@@ -567,9 +567,9 @@ stop_bucash() {
         done
 
         if [ ! -f $TARGET_DIR/.bitcoin/bitcoind.pid ]; then
-            print_success "Bitcoin Unlimited stopped."
+            print_success "BCH Unlimited stopped."
         else
-            print_error "Failed to stop Bitcoin Unlimited."
+            print_error "Failed to stop BCH Unlimited."
             exit 1
         fi
     fi
@@ -578,7 +578,7 @@ stop_bucash() {
 check_bucash() {
     if [ -f $TARGET_DIR/.bitcoin/bitcoind.pid ]; then
         if [ -f $TARGET_DIR/bin/bitcoin-cli ]; then
-            print_info "\nChecking Bitcoin Unlimited.."
+            print_info "\nChecking BCH Unlimited.."
             sleep 5
             $TARGET_DIR/bin/bitcoin-cli -conf=$TARGET_DIR/.bitcoin/bitcoin.conf -datadir=$TARGET_DIR/.bitcoin getinfo
         fi
@@ -586,9 +586,9 @@ check_bucash() {
         # TODO: need to change have this API on cashnodes-api
         reachable=$(curl -I https://bitnodes.cashnodes.io/api/v1/nodes/me-$PORT/ 2> /dev/null | head -n 1 | cut -d ' ' -f2)
         if [ $reachable -eq 200 ]; then
-            print_success "Bitcoin Unlimited is accepting incoming connections at port $PORT!"
+            print_success "BCH Unlimited is accepting incoming connections at port $PORT!"
         else
-            print_warning "Bitcoin Unlimited is not accepting incoming connections at port $PORT. You may need to configure port forwarding (https://bitcoin.org/en/full-node#port-forwarding) on your router."
+            print_warning "BCH Unlimited is not accepting incoming connections at port $PORT. You may need to configure port forwarding (https://bitcoin.org/en/full-node#port-forwarding) on your router."
         fi
     fi
 }
@@ -597,7 +597,7 @@ uninstall_bucash() {
     stop_bucash
 
     if [ -d "$TARGET_DIR" ]; then
-        print_info "\nUninstalling Bitcoin Unlimited.."
+        print_info "\nUninstalling BCH Unlimited.."
         rm -rf $TARGET_DIR
 
         # Remove stale symlink.
@@ -612,13 +612,13 @@ uninstall_bucash() {
         fi
 
         if [ ! -d "$TARGET_DIR" ]; then
-            print_success "Bitcoin Unlimited uninstalled successfully!"
+            print_success "BCH Unlimited uninstalled successfully!"
         else
-            print_error "Uninstallation failed. Is Bitcoin Unlimited still running?"
+            print_error "Uninstallation failed. Is BCH Unlimited still running?"
             exit 1
         fi
     else
-        print_error "Bitcoin Unlimited not installed."
+        print_error "BCH Unlimited not installed."
     fi
 }
 
@@ -655,7 +655,7 @@ WELCOME_TEXT=$(cat <<EOF
 
 Welcome!
 
-You are about to install a Bitcoin Cash full node based on Bitcoin Unlimited v$VERSION.
+You are about to install a Bitcoin Cash full node based on BCH Unlimited v$VERSION.
 
 All files will be installed under $TARGET_DIR directory.
 
@@ -667,7 +667,7 @@ For security reason, wallet functionality is not enabled by default.
 After the installation, it may take several hours for your node to download a
 full copy of the blockchain.
 
-If you wish to uninstall Bitcoin Unlimited later, you can download this script and
+If you wish to uninstall BCH Unlimited later, you can download this script and
 run "sh install-bucash-full-node.sh -u".
 
 EOF
@@ -677,7 +677,7 @@ print_start
 
 if [ $UNINSTALL -eq 1 ]; then
     echo
-    read -p "WARNING: This will stop Bitcoin Unlimited and uninstall it from your system. Uninstall? (y/n) " answer
+    read -p "WARNING: This will stop BCH Unlimited and uninstall it from your system. Uninstall? (y/n) " answer
     if [ "$answer" = "y" ]; then
         uninstall_bucash
     fi
@@ -710,7 +710,7 @@ else
         install_bucash && start_bucash && check_bucash
         print_readme > $TARGET_DIR/README.md
         cat $TARGET_DIR/README.md
-        print_success "If this your first install, Bitcoin Unlimited may take several hours to download a full copy of the blockchain."
+        print_success "If this your first install, BCH Unlimited may take several hours to download a full copy of the blockchain."
         print_success "\nInstallation completed!"
     fi
 fi
